@@ -5,6 +5,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: apt install zip
     - run: zip -r zip_test.zip src
     - run: ls -l zip_test.zip
