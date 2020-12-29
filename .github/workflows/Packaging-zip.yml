@@ -9,4 +9,4 @@ jobs:
     - run: ls -l zip_test.zip
     - uses: actions/download-artifact@v2
       with:
-        name: zip_test
+        name: zip_test.zip
