@@ -7,3 +7,8 @@ jobs:
     - uses: actions/checkout@master
     - run: zip -r zip_test.zip src
     - run: ls -l zip_test.zip
+  download_zip:
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: zip_test
