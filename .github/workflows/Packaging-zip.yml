@@ -4,12 +4,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - run: zip -r zip_test.zip src
-    - run: ls -l zip_test.zip
-    - uses: actions/upload-artifact@v2
-      with:
-        name: zip_test.zip
-    - uses: actions/download-artifact@v2
-      with:
-        name: zip_test.zip
+    - uses: actions/checkout@master            
+    - name: Step 1 - Create a temporary artifact downloads folder
+        run: mkdir downloads        
+    - name: step 2 - Add artifacts to publish to the temp folder
+        run: |
+          cd downloads
+          echo 'alpha'    > alpha.html
+          echo 'bravo'    > bravo.html
+          echo 'charlie'  > charlie.html
+          cd .. 
+        - run: zip -r zip_test.zip src
+        - run: cp zip_test.zip /downloads/zip_test.zip
+    - name: Step 3 - Use the Upload Artifact GitHub Action
+        uses: actions/upload-artifact@v2
+        with: 
+          name: assets-for-download
+          path: downloads
